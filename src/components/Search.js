@@ -70,6 +70,7 @@ const Search = (props) => {
       // write code here
       event.preventDefault();
       setIsLoading(true);
+
       try {
         const results = await fetchQueryResults({ century, classification, queryString });
         setSearchResults(results);
@@ -96,9 +97,9 @@ const Search = (props) => {
           value={classification}
           onChange={(event) => setClassification(event.target.value)}>
           <option value="any">Any</option>
-          {classificationList.map((classification) => {
+          {classificationList.map((classification, index) => {
             return (
-              <option value={classification.name} key={classification.name}>
+              <option key={`${index}:${classification.name}`} value={classification.name}>
                 {classification.name}
               </option>)
           })}
@@ -112,9 +113,10 @@ const Search = (props) => {
           value={century}
           onChange={(event) => setCentury(event.target.value)}>
           <option value="any">Any</option>
-          {centuryList.map((century) => {
+          {centuryList.map((century, index) => {
             return (
-              <option value={century.name} key={century.name}>{century.name}</option>
+              <option key={`${index}:${century.name}`} value={century.name}>
+                {century.name}</option>
             )
           })}
         </select>

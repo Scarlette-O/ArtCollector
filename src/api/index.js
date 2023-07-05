@@ -4,21 +4,25 @@
  * You need to replace YOUR_API_KEY in the string associated with KEY with your actual API key
  */
 export const BASE_URL = 'https://api.harvardartmuseums.org';
-export const KEY = 'apikey=jakjk1b2j34kb32j4bkjasfd';
+export const KEY = 'apikey=cb5e16a7-60b7-4781-9d3f-c901d476aff0';
 
 /**
  * This will make a call to the API for a single term and value (e.g. "person", and "unknown"), and return the result
  */
-export async function fetchQueryResultsFromTermAndValue(term, value) {
+async function fetchObjects() {
+  const url = `${BASE_URL}/object?${KEY}`;
+
   try {
-    const response = await fetch(`${BASE_URL}/object?${KEY}&${term}=${encodeURI(value.split('-').join('|'))}`);
+    const response = await fetch(url);
     const data = await response.json();
 
     return data;
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 }
+
+fetchObjects().then(x => console.log(x));
 
 /**
  * This will make a call to the API for a preformed url (useful for previous and next buttons), and return the result

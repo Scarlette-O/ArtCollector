@@ -13,7 +13,7 @@ import React from 'react';
  * </div>
  */
 
-const Title = () => {
+const Title = (props) => {
     return (
         <div id="title">
             <h1>
